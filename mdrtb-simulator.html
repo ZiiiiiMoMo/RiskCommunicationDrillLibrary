@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Prairie Lantern County MDR-TB Press Briefing Simulator</title>
+    <meta name="description" content="Interactive MDR-TB public health press briefing practice with CERC-based feedback.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to simulation</a>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Risk Communication Drill / Case 2</p>
+        <h1>Prairie Lantern County MDR-TB Press Briefing Simulator</h1>
+        <p class="lede">You are the Prairie Lantern County Health Director. Select a reporter, answer under pressure, then get a CERC-style score focused on MDR-TB, community trust, privacy, screening, and follow-up.</p>
+      </div>
+      <div class="status-card" aria-label="briefing status">
+        <span class="live-dot"></span>
+        <div>
+          <strong>Live at 1:00 PM</strong>
+          <span>MDR-TB, elderly Hmong residents, screening, stigma, provider readiness</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout" id="main-content">
+      <section class="briefing-stage" aria-labelledby="stage-title">
+        <div class="stage-toolbar">
+          <div>
+            <p class="eyebrow">Podium View</p>
+            <h2 id="stage-title">Pick a raised hand</h2>
+          </div>
+          <div class="toolbar-actions">
+            <a class="ghost-link" href="case2.html">Back to scenario</a>
+            <button class="ghost-button" id="randomReporterButton" type="button">Call on anyone</button>
+            <button class="ghost-button" id="replayButton" type="button" disabled>Replay question audio</button>
+          </div>
+        </div>
+
+        <div class="press-room" aria-label="Reporters seated in a press briefing room">
+          <img src="assets/press-room-mdrtb.png" alt="Eight reporters seated in a county public health press briefing room">
+          <div class="flash-layer" aria-hidden="true"></div>
+          <div class="reporter-standees" aria-hidden="true">
+            <div class="standee" style="--crop-left: 0; --crop-top: 31; --w: 13; --h: 42;">
+              <img class="standee-photo" src="assets/press-room-mdrtb.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 13; --crop-top: 31; --w: 14; --h: 42;">
+              <img class="standee-photo" src="assets/press-room-mdrtb.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 27; --crop-top: 31; --w: 13; --h: 42;">
+              <img class="standee-photo" src="assets/press-room-mdrtb.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 40; --crop-top: 31; --w: 14; --h: 42;">
+              <img class="standee-photo" src="assets/press-room-mdrtb.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 54; --crop-top: 31; --w: 13; --h: 42;">
+              <img class="standee-photo" src="assets/press-room-mdrtb.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 67; --crop-top: 31; --w: 13; --h: 42;">
+              <img class="standee-photo" src="assets/press-room-mdrtb.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 80; --crop-top: 31; --w: 11.5; --h: 42;">
+              <img class="standee-photo" src="assets/press-room-mdrtb.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 91; --crop-top: 31; --w: 9; --h: 42;">
+              <img class="standee-photo" src="assets/press-room-mdrtb.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+          </div>
+          <button class="reporter-hotspot" style="--x: 6.5%; --y: 49%;" data-reporter="0" type="button">
+            <span>Daniel, TV news</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 20%; --y: 49%;" data-reporter="1" type="button">
+            <span>Mariah, community desk</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 33.5%; --y: 49%;" data-reporter="2" type="button" aria-label="Call on Harold Pierce, male reporter">
+            <span>Harold, politics</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 47%; --y: 49%;" data-reporter="3" type="button">
+            <span>Sofia, investigative</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 60.5%; --y: 49%;" data-reporter="4" type="button" aria-label="Call on Drew Kaplan, male reporter">
+            <span>Drew, online outlet</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 73.5%; --y: 49%;" data-reporter="5" type="button">
+            <span>Priya, health beat</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 85.5%; --y: 49%;" data-reporter="6" type="button">
+            <span>Mateo, radio</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 95.5%; --y: 49%;" data-reporter="7" type="button">
+            <span>Claire, statewide</span>
+          </button>
+        </div>
+
+        <article class="question-panel" aria-live="polite">
+          <div class="reporter-id">
+            <span id="reporterName">No reporter selected</span>
+            <small id="reporterOutlet">Click a reporter to begin.</small>
+          </div>
+          <p id="questionText">The room is restless. Several hands are up. Choose a reporter to receive a question.</p>
+        </article>
+      </section>
+
+      <aside class="side-panel">
+        <section class="scenario-card">
+          <p class="eyebrow">Situation Card</p>
+          <h2>What the public needs now</h2>
+          <ul>
+            <li>MDR-TB outbreak identified among elderly Hmong residents in Prairie Lantern County.</li>
+            <li>The investigation centers on a Hmong senior activity center and close community networks.</li>
+            <li>Contact tracing is complicated by unreliable sign-in records, shared names, stigma, and deportation fears.</li>
+            <li>MDR-TB treatment can require two years of continuous antibiotics and careful follow-up.</li>
+            <li>Public health is coordinating with community leaders, Hmong-speaking staff, providers, MDH, and CDC specialists.</li>
+            <li>The public needs clear screening guidance, privacy reassurance, and culturally respectful updates.</li>
+          </ul>
+        </section>
+
+        <section class="answer-card">
+          <div class="answer-heading">
+            <div>
+              <p class="eyebrow">Your Answer</p>
+              <h2>Respond as the health official</h2>
+            </div>
+            <button class="mic-button" id="micButton" type="button">Use mic</button>
+          </div>
+          <p class="hint" id="speechHint">Microphone input works best in Google Chrome because it uses the Web Speech Recognition API. Keyboard input always works. Aim for no more than 3 key messages, and keep each message to 3 supporting details or fewer.</p>
+          <label class="field-label" for="answerInput">Your briefing response</label>
+          <textarea id="answerInput" rows="9" maxlength="3000" aria-describedby="speechHint answerCount" placeholder="Type or dictate your answer in English. Try 1 to 3 key messages, each with no more than 3 supporting details."></textarea>
+          <p class="answer-count" id="answerCount" aria-live="polite">0 words</p>
+          <div class="answer-actions">
+            <button class="primary-button" id="scoreButton" type="button" disabled>Score my answer</button>
+            <button class="ghost-button" id="clearButton" type="button">Clear</button>
+          </div>
+        </section>
+      </aside>
+
+      <section class="score-panel" id="scorePanel" aria-live="polite">
+      <div class="score-empty">
+          <p class="eyebrow">AI Coach</p>
+          <h2>Your score will appear here</h2>
+          <p>The local coach evaluates CERC habits plus message discipline: empathy, accuracy, transparency, action guidance, respect, question relevance, and whether you stay within 3 key messages with up to 3 supporting details each.</p>
+        </div>
+      </section>
+    </main>
+
+    <template id="scoreTemplate">
+      <div class="score-summary">
+        <div class="score-ring" aria-label="score">
+          <span id="scoreValue">0</span>
+          <small>/100</small>
+        </div>
+        <div>
+          <p class="eyebrow">AI Coach Score</p>
+          <h2 id="scoreTitle">Needs practice</h2>
+          <p id="scoreNarrative"></p>
+        </div>
+      </div>
+      <div class="rubric-grid" id="rubricGrid"></div>
+      <div class="feedback-columns">
+        <div>
+          <h3>What worked</h3>
+          <ul id="strengthList"></ul>
+        </div>
+        <div>
+          <h3>Strengthen next</h3>
+          <ul id="improvementList"></ul>
+        </div>
+      </div>
+      <div class="model-points">
+        <h3>High-scoring answer should include</h3>
+        <ul id="modelPointList"></ul>
+      </div>
+      <div class="message-metrics">
+        <h3>Message discipline</h3>
+        <p id="messageMetrics">The coach checks how many key messages you used and whether each message stayed compact.</p>
+      </div>
+    </template>
+
+    <script src="app-mdrtb.js"></script>
+  </body>
+</html>

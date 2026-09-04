@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: risk-communication-drill-library
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/agent-status
+    envVars:
+      - key: DIFY_CHAT_URL
+        value: http://line.doctoru.net/v1/chat-messages
+      - key: DIFY_API_KEY
+        sync: false

@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Apple Grove Press Briefing Simulator</title>
+    <meta name="description" content="Interactive Apple Grove public health press briefing practice with CERC-based feedback.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="auth.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to simulation</a>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Risk Communication Drill</p>
+        <h1>Apple Grove Press Briefing Simulator</h1>
+        <p class="lede">You are the Public Health Officer / Director of the Health Department. Select a reporter, answer under pressure, then get a CERC-style score.</p>
+      </div>
+      <div class="status-card" aria-label="briefing status">
+        <span class="live-dot"></span>
+        <div>
+          <strong>Live at 1:00 PM</strong>
+          <span>Hep A(1c), wildfire smoke, boil water advisory, clinic safety</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout" id="main-content">
+      <section class="briefing-stage" aria-labelledby="stage-title">
+        <div class="stage-toolbar">
+          <div>
+            <p class="eyebrow">Podium View</p>
+            <h2 id="stage-title">Pick a raised hand</h2>
+          </div>
+          <div class="toolbar-actions">
+            <a class="ghost-link" href="case1.html">Back to scenario</a>
+            <button class="ghost-button" id="randomReporterButton" type="button">Call on anyone</button>
+            <button class="ghost-button" id="replayButton" type="button" disabled>Replay question audio</button>
+          </div>
+        </div>
+
+        <div class="press-room" aria-label="Reporters seated in a press briefing room">
+          <video src="./assets/apple-grove-video.mp4" autoplay muted loop playsinline aria-label="Apple Grove public health press briefing room"></video>
+          <video class="reporter-selection-video" id="reporterSelectionVideo" src="assets/reporter-selection-video.mp4" muted playsinline preload="metadata" aria-label="Selected reporter video"></video>
+          <div class="flash-layer" aria-hidden="true"></div>
+          <div class="reporter-standees" aria-hidden="true">
+            <div class="standee" style="--crop-left: 0; --crop-top: 35; --w: 10; --h: 36;">
+              <img class="standee-photo" src="assets/press-room-us-clear.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 13; --crop-top: 35; --w: 12; --h: 36;">
+              <img class="standee-photo" src="assets/press-room-us-clear.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 28; --crop-top: 35; --w: 12; --h: 36;">
+              <img class="standee-photo" src="assets/press-room-us-clear.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 42; --crop-top: 35; --w: 12; --h: 36;">
+              <img class="standee-photo" src="assets/press-room-us-clear.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 55; --crop-top: 35; --w: 11; --h: 36;">
+              <img class="standee-photo" src="assets/press-room-us-clear.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 67; --crop-top: 35; --w: 10; --h: 36;">
+              <img class="standee-photo" src="assets/press-room-us-clear.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 79; --crop-top: 35; --w: 9.5; --h: 36;">
+              <img class="standee-photo" src="assets/press-room-us-clear.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+            <div class="standee" style="--crop-left: 91.2; --crop-top: 35; --w: 8.3; --h: 36;">
+              <img class="standee-photo" src="assets/press-room-us-clear.png" alt="">
+              <span class="standee-mic"></span>
+            </div>
+          </div>
+          <button class="reporter-hotspot" style="--x: 5%; --y: 49%;" data-reporter="0" type="button">
+            <span>Aisha, city desk</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 19%; --y: 49%;" data-reporter="1" type="button">
+            <span>Daniel, TV news</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 34%; --y: 49%;" data-reporter="2" type="button">
+            <span>Renee, investigative</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 48%; --y: 49%;" data-reporter="3" type="button">
+            <span>Priya, health beat</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 61%; --y: 49%;" data-reporter="4" type="button">
+            <span>Jon, radio</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 73%; --y: 49%;" data-reporter="5" type="button">
+            <span>Elena, statewide</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 83.5%; --y: 49%;" data-reporter="6" type="button" aria-label="Call on Frank Malloy, male reporter">
+            <span>Frank, politics</span>
+          </button>
+          <button class="reporter-hotspot" style="--x: 96%; --y: 49%;" data-reporter="7" type="button" aria-label="Call on Drew Kaplan, male reporter">
+            <span>Drew, online outlet</span>
+          </button>
+        </div>
+
+        <article class="question-panel" aria-live="polite">
+          <div class="reporter-id">
+            <span id="reporterName">No reporter selected</span>
+            <small id="reporterOutlet">Click a reporter to begin.</small>
+          </div>
+          <p id="questionText">The room is restless. Several hands are up. Choose a reporter to receive a question.</p>
+        </article>
+      </section>
+
+      <aside class="side-panel">
+        <section class="scenario-card">
+          <p class="eyebrow">Situation Card</p>
+          <h2>What the public needs now</h2>
+          <ul>
+            <li>Hepatitis A(1c) exposure linked to Rob's Roadside Restaurant.</li>
+            <li>Potential exposure window: April 26 through May 17.</li>
+            <li>Immune globulin is offered for people who ate there May 3 through May 16.</li>
+            <li>Clinic: 4-H Building, Orchard County Fairgrounds, Friday noon-8 PM and Saturday 9 AM-5 PM.</li>
+            <li>Hotline: (800) 657-3903 or (651) 201-3920.</li>
+            <li>Wildfire smoke, a boil water advisory, and protest activity are also affecting safety planning.</li>
+          </ul>
+        </section>
+
+        <section class="answer-card">
+          <div class="answer-heading">
+            <div>
+              <p class="eyebrow">Your Answer</p>
+              <h2>Respond as the health official</h2>
+            </div>
+            <button class="mic-button" id="micButton" type="button">Use mic</button>
+          </div>
+          <p class="hint" id="speechHint">Microphone input works best in Google Chrome because it uses the Web Speech Recognition API. Keyboard input always works. Aim for no more than 3 key messages, and keep each message to 3 supporting details or fewer.</p>
+          <label class="field-label" for="answerInput">Your briefing response</label>
+          <textarea id="answerInput" rows="9" maxlength="3000" aria-describedby="speechHint answerCount" placeholder="Type or dictate your answer in English. Try 1 to 3 key messages, each with no more than 3 supporting details."></textarea>
+          <p class="answer-count" id="answerCount" aria-live="polite">0 words</p>
+          <div class="answer-actions">
+            <button class="primary-button" id="scoreButton" type="button" disabled>Score my answer</button>
+            <button class="ghost-button" id="clearButton" type="button">Clear</button>
+          </div>
+        </section>
+      </aside>
+
+      <section class="dify-response-panel" id="difyResponsePanel" aria-live="polite">
+        <h2>Intelligent agent feedback</h2>
+        <p class="dify-response-status" id="difyResponseStatus">Submit your answer to receive feedback from the intelligent agent.</p>
+        <div class="dify-response-content" id="difyResponseContent"></div>
+      </section>
+
+      <section class="score-panel" id="scorePanel" aria-live="polite">
+        <div class="score-empty">
+          <p class="eyebrow">AI Coach</p>
+          <h2>Your score will appear here</h2>
+          <p>The local coach evaluates CERC habits plus message discipline: empathy, accuracy, transparency, action guidance, respect, question relevance, and whether you stay within 3 key messages with up to 3 supporting details each.</p>
+        </div>
+      </section>
+    </main>
+
+    <template id="scoreTemplate">
+      <div class="score-summary">
+        <div class="score-ring" aria-label="score">
+          <span id="scoreValue">0</span>
+          <small>/100</small>
+        </div>
+        <div>
+          <p class="eyebrow">AI Coach Score</p>
+          <h2 id="scoreTitle">Needs practice</h2>
+          <p id="scoreNarrative"></p>
+        </div>
+      </div>
+      <div class="rubric-grid" id="rubricGrid"></div>
+      <div class="feedback-columns">
+        <div>
+          <h3>What worked</h3>
+          <ul id="strengthList"></ul>
+        </div>
+        <div>
+          <h3>Strengthen next</h3>
+          <ul id="improvementList"></ul>
+        </div>
+      </div>
+      <div class="model-points">
+        <h3>High-scoring answer should include</h3>
+        <ul id="modelPointList"></ul>
+      </div>
+      <div class="message-metrics">
+        <h3>Message discipline</h3>
+        <p id="messageMetrics">The coach checks how many key messages you used and whether each message stayed compact.</p>
+      </div>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
